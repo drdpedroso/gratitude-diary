@@ -42,6 +42,7 @@ export default {
         }
         return task
       })
+      this.$emit('set', { items: this.items })
     }
   }
 }

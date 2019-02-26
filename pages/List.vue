@@ -4,7 +4,7 @@
       Write something that you're grateful at this second - {{ formattedDate }}
     </h6>
     <hr>
-    <list />
+    <list @set="handleSetItem" />
   </section>
 </template>
 
@@ -27,8 +27,22 @@ export default {
       return format(new Date(this.date), 'DD/MM/YYYY')
     }
   },
-  created() {
-    console.log(this.$route.params)
+  methods: {
+    handleSetItem(data) {
+      console.log(data, this.date)
+      localStorage.setItem(
+        format(new Date(this.date), 'YYYY-MM-DD'),
+        JSON.stringify(data)
+      )
+      // this.mapItemToEvent()
+    },
+    mapItemToEvent() {
+      const events = JSON.parse(localStorage.getItem('events') || '[]')
+      const dateToEventFormat = {
+        start: format(new Date(this.date), 'MM-DD-YYYY')
+      }
+      return [...events, dateToEventFormat]
+    }
   }
 }
 </script>

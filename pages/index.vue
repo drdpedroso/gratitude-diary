@@ -24,16 +24,16 @@ export default {
   },
   data() {
     return {
-      events: [
-        {
-          start: '2019-02-21 12:00',
-          end: '2019-02-21 13:00'
-        },
-        {
-          start: '2019-02-22 12:00',
-          end: '2019-02-22 13:00'
-        }
-      ]
+      events: Object.keys(localStorage).map(date => ({
+        start: date,
+        end: date
+      }))
+    }
+  },
+  computed: {
+    eventList: function() {
+      return []
+      // return Object.keys(localStorage).map(date => ({ start: date }))
     }
   },
   methods: {
