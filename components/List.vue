@@ -2,9 +2,10 @@
   <div class="list-wrapper">
     <card v-for="item in items" :key="item.id">
       <div v-if="!item.done" class="control">
-        <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Type something that your grateful for!"></textarea>
+        <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Type something that your grateful for!" @blur="enableEdit(item, true)" />
       </div>
-      <div v-else>
+      <div v-else @click="enableEdit(item, false)">
+        <i class="fas fa-check" />
         <span class="done-item">{{ item.text }}</span>
       </div>
     </card>
@@ -26,6 +27,16 @@ export default {
         { id: 2, text: 'Something grateful and another stuff', done: false },
         { id: 3, text: 'Something another stuff', done: false }
       ]
+    }
+  },
+  methods: {
+    enableEdit(item, isDone) {
+      this.items = this.items.map(task => {
+        if (task.id === item.id) {
+          return { ...task, done: isDone }
+        }
+        return task
+      })
     }
   }
 }
