@@ -4,12 +4,13 @@
       Write something that you're grateful at this second - {{ formattedDate }}
     </h6>
     <hr>
-    <list @set="handleSetItem" />
+    <list :items="items" @set="handleSetItem" />
   </section>
 </template>
 
 <script>
 import { format } from 'date-fns'
+import get from 'lodash/get'
 import list from '../components/List'
 
 export default {
@@ -25,6 +26,15 @@ export default {
   computed: {
     formattedDate: function() {
       return format(new Date(this.date), 'DD/MM/YYYY')
+    },
+    items: function() {
+      return get(
+        JSON.parse(
+          localStorage.getItem(format(new Date(this.date), 'YYYY-MM-DD'))
+        ),
+        'items',
+        [{ id: 1 }, { id: 2 }, { id: 3 }]
+      )
     }
   },
   methods: {

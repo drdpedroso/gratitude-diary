@@ -20,20 +20,7 @@ export default {
   components: {
     card
   },
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          text: 'Something grateful and stuff',
-          done: true,
-          content: '<i class="v-icon material-icons">directions_run</i>'
-        },
-        { id: 2, text: 'Something grateful and another stuff', done: false },
-        { id: 3, text: 'Something another stuff', done: false }
-      ]
-    }
-  },
+  props: ['items'],
   methods: {
     enableEdit(item, isDone) {
       this.items = this.items.map(task => {
