@@ -9,12 +9,8 @@
       :disable-views="['years', 'year', 'day', 'week', 'month']"
       default-view="month"
       class="calendar-container"
-      @day-focus="test"
-    >
-      <div slot="cellHasEvents" @click="test">
-        0
-      </div>
-    </VueCal>
+      @day-focus="goToList"
+    />
   </section>
 </template>
 
@@ -41,8 +37,8 @@ export default {
     }
   },
   methods: {
-    test(e) {
-      console.log(e)
+    goToList(date) {
+      this.$router.push({ name: 'List', params: { date } })
     }
   }
 }

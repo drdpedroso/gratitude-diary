@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <h6 class="subtitle">
-      Write something that you're grateful at this second
+      Write something that you're grateful at this second - {{ formattedDate }}
     </h6>
     <hr>
     <list />
@@ -9,11 +9,26 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
 import list from '../components/List'
+
 export default {
   name: 'List',
   components: {
     list
+  },
+  data() {
+    return {
+      date: this.$route.params.date
+    }
+  },
+  computed: {
+    formattedDate: function() {
+      return format(new Date(this.date), 'DD/MM/YYYY')
+    }
+  },
+  created() {
+    console.log(this.$route.params)
   }
 }
 </script>
