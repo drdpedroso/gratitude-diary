@@ -23,7 +23,12 @@ export default {
   data() {
     return {
       items: [
-        { id: 1, text: 'Something grateful and stuff', done: true },
+        {
+          id: 1,
+          text: 'Something grateful and stuff',
+          done: true,
+          content: '<i class="v-icon material-icons">directions_run</i>'
+        },
         { id: 2, text: 'Something grateful and another stuff', done: false },
         { id: 3, text: 'Something another stuff', done: false }
       ]

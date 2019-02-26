@@ -3,19 +3,47 @@
     <h1 class="title">
       Gratitude Diary
     </h1>
-    <h6 class="subtitle">
-      Write something that you're grateful at this second
-    </h6>
-    <list />
+    <hr>
+    <VueCal
+      :events="events"
+      :disable-views="['years', 'year', 'day', 'week', 'month']"
+      default-view="month"
+      class="calendar-container"
+      @day-focus="test"
+    >
+      <div slot="cellHasEvents" @click="test">
+        0
+      </div>
+    </VueCal>
   </section>
 </template>
 
 <script>
-import list from '../components/List'
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 
 export default {
   components: {
-    list
+    VueCal
+  },
+  data() {
+    return {
+      events: [
+        {
+          start: '2019-02-21 12:00',
+          end: '2019-02-21 13:00'
+        },
+        {
+          start: '2019-02-22 12:00',
+          end: '2019-02-22 13:00'
+        }
+      ]
+    }
+  },
+  methods: {
+    test(e) {
+      console.log(e)
+    }
   }
 }
 </script>
@@ -38,11 +66,17 @@ export default {
   padding-bottom: 15px;
 }
 
-.subtitle {
-  font-weight: 200;
-  font-size: 29px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.calendar-container {
+  padding: 20px;
+  margin-bottom: 55px;
+  min-height: 60vh;
+}
+
+.vuecal__cell--has-events {
+  background-color: rgba(136, 255, 50, 0.5);
+}
+
+.vuecal__cell-events-count {
+  display: none;
 }
 </style>
