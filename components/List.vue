@@ -2,7 +2,7 @@
   <div class="list-wrapper">
     <card v-for="item in items" :key="item.id">
       <div v-if="!item.done" class="control">
-        <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Fixed size textarea" />
+        <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Type something that your grateful for!"></textarea>
       </div>
       <div v-else>
         <span class="done-item">{{ item.text }}</span>

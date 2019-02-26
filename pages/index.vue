@@ -1,8 +1,11 @@
 <template>
   <section class="container">
-    <h1 class="subtitle">
-      Be grateful!
+    <h1 class="title">
+      Gratitude Diary
     </h1>
+    <h6 class="subtitle">
+      Write something that you're grateful at this second
+    </h6>
     <list />
   </section>
 </template>
@@ -27,9 +30,17 @@ export default {
   text-align: center;
 }
 
-.subtitle {
+.title {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 40px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.subtitle {
+  font-weight: 200;
+  font-size: 29px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
