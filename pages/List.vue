@@ -39,19 +39,10 @@ export default {
   },
   methods: {
     handleSetItem(data) {
-      console.log(data, this.date)
       localStorage.setItem(
         format(new Date(this.date), 'YYYY-MM-DD'),
         JSON.stringify(data)
       )
-      // this.mapItemToEvent()
-    },
-    mapItemToEvent() {
-      const events = JSON.parse(localStorage.getItem('events') || '[]')
-      const dateToEventFormat = {
-        start: format(new Date(this.date), 'MM-DD-YYYY')
-      }
-      return [...events, dateToEventFormat]
     }
   }
 }
