@@ -1,6 +1,6 @@
 <template>
   <div class="list-wrapper">
-    <card v-for="item in items" :key="item.id">
+    <card v-for="item in imutableItems" :key="item.id">
       <div v-if="!item.done" class="control">
         <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Type something that your grateful for!" @blur="enableEdit(item, true)" />
       </div>
@@ -21,15 +21,20 @@ export default {
     card
   },
   props: ['items'],
+  data() {
+    return {
+      imutableItems: [...this.items]
+    }
+  },
   methods: {
     enableEdit(item, isDone) {
-      this.items = this.items.map(task => {
+      this.imutableItems = this.imutableItems.map(task => {
         if (task.id === item.id) {
           return { ...task, done: isDone }
         }
         return task
       })
-      this.$emit('set', { items: this.items })
+      this.$emit('set', { items: this.imutableItems })
     }
   }
 }

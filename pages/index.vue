@@ -16,6 +16,7 @@
 
 <script>
 import VueCal from 'vue-cal'
+// import { db } from '../plugins/firebase'
 import 'vue-cal/dist/vuecal.css'
 
 export default {
@@ -28,12 +29,6 @@ export default {
         start: date,
         end: date
       }))
-    }
-  },
-  computed: {
-    eventList: function() {
-      return []
-      // return Object.keys(localStorage).map(date => ({ start: date }))
     }
   },
   methods: {

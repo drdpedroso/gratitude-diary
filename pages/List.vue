@@ -11,6 +11,7 @@
 <script>
 import { format } from 'date-fns'
 import get from 'lodash/get'
+import { db } from '../plugins/firebase'
 import list from '../components/List'
 
 export default {
@@ -39,10 +40,23 @@ export default {
   },
   methods: {
     handleSetItem(data) {
-      localStorage.setItem(
-        format(new Date(this.date), 'YYYY-MM-DD'),
-        JSON.stringify(data)
-      )
+      console.log(data)
+      db.collection('events')
+        .add({
+          date: format(new Date(this.date), 'YYYY-MM-DD'),
+          items: data
+        })
+        .then(function(docRef) {
+          console.log('Document written with ID: ', docRef.id)
+        })
+        .catch(function(error) {
+          console.error('Error adding document: ', error)
+        })
+
+      // localStorage.setItem(
+      //   format(new Date(this.date), 'YYYY-MM-DD'),
+      //   JSON.stringify(data)
+      // )
     }
   }
 }
