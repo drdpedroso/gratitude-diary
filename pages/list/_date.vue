@@ -1,8 +1,13 @@
 <template>
   <section class="container">
-    <h6 class="subtitle">
-      Write something that you're grateful at this second - {{ formattedDate }}
-    </h6>
+    <div class="title-container">
+      <h6 class="subtitle">
+        Write something that you're grateful for, at this second - {{ formattedDate }}
+      </h6>
+      <button class="button is-light" @click="goBack">
+        Back
+      </button>
+    </div>
     <hr>
     <list :items="items" @set="handleSetItem" />
   </section>
@@ -11,8 +16,7 @@
 <script>
 import { format } from 'date-fns'
 import get from 'lodash/get'
-import { db } from '../plugins/firebase'
-import list from '../components/List'
+import list from '../../components/List'
 
 export default {
   name: 'List',
@@ -40,29 +44,23 @@ export default {
   },
   methods: {
     handleSetItem(data) {
-      console.log(data)
-      db.collection('events')
-        .add({
-          date: format(new Date(this.date), 'YYYY-MM-DD'),
-          items: data
-        })
-        .then(function(docRef) {
-          console.log('Document written with ID: ', docRef.id)
-        })
-        .catch(function(error) {
-          console.error('Error adding document: ', error)
-        })
-
-      // localStorage.setItem(
-      //   format(new Date(this.date), 'YYYY-MM-DD'),
-      //   JSON.stringify(data)
-      // )
+      return localStorage.setItem(
+        format(new Date(this.date), 'YYYY-MM-DD'),
+        JSON.stringify(data)
+      )
+    },
+    goBack() {
+      this.$router.push('/')
     }
   }
 }
 </script>
 
 <style scoped>
+.title-container {
+  display: flex;
+  flex-direction: row;
+}
 .container {
   padding-top: 35px;
   margin: 0 auto;
@@ -78,5 +76,6 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+  flex: 1;
 }
 </style>

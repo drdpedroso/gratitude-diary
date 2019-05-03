@@ -1,7 +1,7 @@
 <template>
   <div class="list-wrapper">
     <card v-for="item in imutableItems" :key="item.id">
-      <div v-if="!item.done" class="control">
+      <div v-if="!item.done || item.text === ''" class="control">
         <textarea v-model="item.text" class="textarea has-fixed-size" placeholder="Type something that your grateful for!" @blur="enableEdit(item, true)" />
       </div>
       <div v-else @click="enableEdit(item, false)">

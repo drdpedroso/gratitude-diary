@@ -9,7 +9,7 @@
       :disable-views="['years', 'year', 'day', 'week', 'month']"
       default-view="month"
       class="calendar-container"
-      @day-focus="goToList"
+      @cell-click="goToList"
     />
   </section>
 </template>
@@ -33,7 +33,8 @@ export default {
   },
   methods: {
     goToList(date) {
-      this.$router.push({ name: 'List', params: { date } })
+      // this.$router.push({ name: 'List', params: { date } })
+      this.$router.push(`/list/${date}`)
     }
   }
 }
@@ -55,6 +56,12 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+  flex: 1;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .calendar-container {
@@ -65,6 +72,11 @@ export default {
 
 .vuecal__cell--has-events {
   background-color: rgba(136, 255, 50, 0.5);
+}
+
+.vuecal__cell.today,
+.vuecal__cell.current {
+  background-color: rgba(248, 255, 0, 0.4);
 }
 
 .vuecal__cell-events-count {
