@@ -16,24 +16,29 @@
 
 <script>
 import VueCal from 'vue-cal'
-// import { db } from '../plugins/firebase'
 import 'vue-cal/dist/vuecal.css'
 
 export default {
   components: {
     VueCal
   },
-  data() {
-    return {
-      events: Object.keys(localStorage).map(date => ({
-        start: date,
-        end: date
-      }))
+  computed: {
+    events() {
+      return Object.keys(localStorage)
+        .filter(
+          date => JSON.parse(localStorage.getItem(date)).items.length !== 0
+        )
+        .map(date => {
+          console.log(date)
+          return { start: date, end: date }
+        })
     }
+  },
+  mounted() {
+    this.$ga.page('/')
   },
   methods: {
     goToList(date) {
-      // this.$router.push({ name: 'List', params: { date } })
       this.$router.push(`/list/${date}`)
     }
   }
@@ -56,7 +61,7 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
-  flex: 1;
+  /*flex: 1;*/
 }
 
 .title-container {

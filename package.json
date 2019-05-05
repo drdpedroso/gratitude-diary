@@ -1,8 +1,8 @@
 {
-  "name": "gratitude-diary",
+  "name": "BeGrateful",
   "version": "1.0.0",
-  "description": "My mathematical Nuxt.js project",
-  "author": "Eduardo",
+  "description": "Be Grateful - gratitude diary",
+  "author": "Eduardo Pedroso",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -16,11 +16,13 @@
   },
   "dependencies": {
     "@nuxtjs/bulma": "^1.2.1",
+    "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "date-fns": "^1.30.1",
     "lodash": "^4.17.11",
     "nuxt": "^2.4.0",
+    "vue-analytics": "^5.16.4",
     "vue-cal": "^1.55.1"
   },
   "devDependencies": {

@@ -1,12 +1,16 @@
 <template>
   <section class="container">
     <div class="title-container">
-      <h6 class="subtitle">
-        Write something that you're grateful for, at this second - {{ formattedDate }}
-      </h6>
-      <button class="button is-light" @click="goBack">
-        Back
-      </button>
+      <div>
+        <h6 class="subtitle">
+          Write something that you're grateful for, at this second - {{ formattedDate }}
+        </h6>
+      </div>
+      <div>
+        <button style="margin-left: 20px;" class="button is-light" @click="goBack">
+          Back
+        </button>
+      </div>
     </div>
     <hr>
     <list :items="items" @set="handleSetItem" />
@@ -38,7 +42,7 @@ export default {
           localStorage.getItem(format(new Date(this.date), 'YYYY-MM-DD'))
         ),
         'items',
-        [{ id: 1 }, { id: 2 }, { id: 3 }]
+        []
       )
     }
   },
@@ -59,6 +63,7 @@ export default {
 <style scoped>
 .title-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 .container {
