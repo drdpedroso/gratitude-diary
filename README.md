@@ -1,6 +1,6 @@
 # gratitude-diary
 
-> My mathematical Nuxt.js project
+> My Nuxt.js project
 
 ## Build Setup
 
